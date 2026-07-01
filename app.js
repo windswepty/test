@@ -1,3 +1,8 @@
+// Supabase Client Config
+const supabaseUrl = 'https://cgxgvvtrvxnamdylluax.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNneGd2dnRydnhuYW1keWxsdWF4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4NjAwNDQsImV4cCI6MjA5ODQzNjA0NH0.7pZarplo4eYu_HbTbrl2yUhNCovozeERyqJ6us-m9kY';
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
 document.addEventListener('DOMContentLoaded', () => {
   // --- DOM Elements ---
   const signupForm = document.getElementById('signupForm');
@@ -367,10 +372,52 @@ document.addEventListener('DOMContentLoaded', () => {
       modalData.phone.innerText = phoneVal;
       modalData.date.innerText = formattedDate;
 
-      // Save user to localStorage for simulated DB
+      // 1. 아이디 중복 체크
+      const { data: existingUser, error: checkError } = await supabaseClient
+        .from('members')
+        .select('id')
+        .eq('username', usernameVal)
+        .maybeSingle();
+
+      if (checkError) throw checkError;
+      
+      if (existingUser) {
+        setFieldState(fields.username, false, '이미 사용 중인 아이디입니다.');
+        fields.username.input.focus();
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = originalText;
+        return;
+      }
+
+      // 2. 실제 DB 등록 (members 테이블)
+      const { data: memberData, error: memberError } = await supabaseClient
+        .from('members')
+        .insert([{
+          username: usernameVal,
+          password: hashedPassword,
+          email: emailVal,
+          phone: phoneVal
+        }])
+        .select()
+        .single();
+
+      if (memberError) throw memberError;
+
+      // 3. 약관 동의 이력 보관 (terms_agreements 테이블)
+      const { error: termsError } = await supabaseClient
+        .from('terms_agreements')
+        .insert([{
+          member_id: memberData.id,
+          terms_version: 'v1.0',
+          is_agreed: true
+        }]);
+
+      if (termsError) throw termsError;
+
+      // LocalStorage에도 동기화 (기존 호환성용)
       const registeredUser = {
         username: usernameVal,
-        password: pwdVal,
+        password: hashedPassword,
         email: emailVal,
         phone: phoneVal
       };
@@ -379,13 +426,21 @@ document.addEventListener('DOMContentLoaded', () => {
       users.push(registeredUser);
       localStorage.setItem('yju_users', JSON.stringify(users));
 
+      // 모달 데이터 바인딩 (실제 DB ID 사용)
+      modalData.id.innerText = memberData.id;
+      modalData.username.innerText = memberData.username;
+      modalData.password.innerText = memberData.password;
+      modalData.email.innerText = memberData.email;
+      modalData.phone.innerText = memberData.phone;
+      modalData.date.innerText = new Date(memberData.created_at).toLocaleString();
+
       // Show Modal
       successModal.classList.add('active');
       successModal.setAttribute('aria-hidden', 'false');
 
     } catch (err) {
-      console.error('Error simulation registration: ', err);
-      alert('회원가입 처리 중 알 수 없는 오류가 발생했습니다.');
+      console.error('Error database registration: ', err);
+      alert('데이터베이스 저장 중 오류가 발생했습니다: ' + err.message);
     } finally {
       btnSubmit.disabled = false;
       btnSubmit.innerHTML = originalText;
