@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영진전문대학교 - 통합 포털 메인</title>
+  <meta name="description" content="영진전문대학교 통합 포털 메인 페이지입니다. 대학의 다양한 온라인 서비스를 이용하실 수 있습니다.">
+  
+  <!-- Web Fonts (Noto Sans KR, Montserrat) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Shared Style -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Decorative Spheres -->
+  <div class="bg-bubble bg-bubble-1"></div>
+  <div class="bg-bubble bg-bubble-2"></div>
+
+  <div class="app-container portal-container">
+    <!-- Portal Header -->
+    <header class="app-header portal-header">
+      <div class="logo-area">
+        <svg class="yju-logo" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#006837" />
+              <stop offset="100%" stop-color="#009245" />
+            </linearGradient>
+            <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F7931E" />
+              <stop offset="100%" stop-color="#FF5F00" />
+            </linearGradient>
+          </defs>
+          <g transform="translate(10, 10)">
+            <path d="M 0 0 L 25 0 L 40 30 L 25 60 L 0 60 L 15 30 Z" fill="url(#gradGreen)" />
+            <circle cx="35" cy="30" r="18" fill="url(#gradOrange)" opacity="0.9" />
+            <path d="M 28 20 L 45 20 L 35 45 Z" fill="#FFFFFF" />
+          </g>
+          <text x="75" y="38" font-family="'Montserrat', sans-serif" font-weight="900" font-size="28" fill="#006837" letter-spacing="1">YJU</text>
+          <text x="75" y="58" font-family="'Noto Sans KR', sans-serif" font-weight="700" font-size="14" fill="#666666" letter-spacing="0.5">영진전문대학교</text>
+        </svg>
+      </div>
+      <p class="header-subtitle">CAMPUS PORTAL SYSTEM</p>
+    </header>
+
+    <!-- Main Portal Content -->
+    <main class="app-main">
+      <section class="signup-card portal-card">
+        
+        <!-- Welcome banner -->
+        <div class="portal-welcome">
+          <div class="user-avatar">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <h1 class="welcome-title"><span id="user-display-name" class="name-highlight">학우</span>님, 환영합니다!</h1>
+          <p class="welcome-desc">영진전문대학교 통합 포털 서비스에 정상적으로 로그인되었습니다.</p>
+        </div>
+
+        <!-- Session User Info Box -->
+        <div class="db-result-box session-box">
+          <div class="db-badge">CURRENT LOGIN SESSION INFO</div>
+          <table class="db-table">
+            <tbody>
+              <tr>
+                <th><i class="fa-regular fa-user"></i> 아이디</th>
+                <td id="session-username">-</td>
+              </tr>
+              <tr>
+                <th><i class="fa-regular fa-envelope"></i> 이메일</th>
+                <td id="session-email">-</td>
+              </tr>
+              <tr>
+                <th><i class="fa-solid fa-mobile-screen-button"></i> 전화번호</th>
+                <td id="session-phone">-</td>
+              </tr>
+              <tr>
+                <th><i class="fa-regular fa-clock"></i> 로그인 일시</th>
+                <td id="session-time">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Campus Quick Services Grid -->
+        <div class="services-section">
+          <h2 class="services-title">주요 학사 서비스</h2>
+          <div class="services-grid">
+            <a href="https://www.yju.ac.kr" target="_blank" rel="noopener noreferrer" class="service-item">
+              <div class="service-icon icon-green"><i class="fa-solid fa-house"></i></div>
+              <span class="service-name">대학 홈</span>
+            </a>
+            <a href="#" onclick="event.preventDefault(); alert('종합정보시스템으로 이동합니다.');" class="service-item">
+              <div class="service-icon icon-orange"><i class="fa-solid fa-database"></i></div>
+              <span class="service-name">종합정보</span>
+            </a>
+            <a href="#" onclick="event.preventDefault(); alert('원격강의(LMS) 시스템으로 이동합니다.');" class="service-item">
+              <div class="service-icon icon-blue"><i class="fa-solid fa-video"></i></div>
+              <span class="service-name">원격강의</span>
+            </a>
+            <a href="#" onclick="event.preventDefault(); alert('도서관 홈페이지로 이동합니다.');" class="service-item">
+              <div class="service-icon icon-purple"><i class="fa-solid fa-book-open"></i></div>
+              <span class="service-name">도서관</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Logout Button -->
+        <button type="button" id="btnLogout" class="btn-logout">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>안전 로그아웃</span>
+        </button>
+
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p class="copyright">&copy; 2026 YEUNGJIN UNIVERSITY. ALL RIGHTS RESERVED.</p>
+    </footer>
+  </div>
+
+  <!-- Page protection and session reading script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check session storage for logged-in user
+      const userDataJson = sessionStorage.getItem('yju_logged_in_user');
+      
+      if (!userDataJson) {
+        // If not logged in, redirect to login/signup page immediately
+        alert('로그인 세션이 없습니다. 회원가입/로그인 페이지로 이동합니다.');
+        window.location.href = 'index.html';
+        return;
+      }
+      
+      try {
+        const user = JSON.parse(userDataJson);
+        
+        // Display values
+        document.getElementById('user-display-name').innerText = user.username;
+        document.getElementById('session-username').innerText = user.username;
+        document.getElementById('session-email').innerText = user.email;
+        document.getElementById('session-phone').innerText = user.phone;
+        document.getElementById('session-time').innerText = user.loginTime;
+      } catch (e) {
+        console.error('Failed to parse user session data', e);
+        sessionStorage.removeItem('yju_logged_in_user');
+        window.location.href = 'index.html';
+      }
+
+      // Logout handler
+      document.getElementById('btnLogout').addEventListener('click', () => {
+        if (confirm('로그아웃 하시겠습니까?')) {
+          sessionStorage.removeItem('yju_logged_in_user');
+          window.location.href = 'index.html';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

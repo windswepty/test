@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>영진전문대학교 - 통합회원가입</title>
+  <meta name="description" content="영진전문대학교 공식 통합 회원가입 페이지입니다. 안전한 보안 환경에서 통합 회원 계정을 생성하세요.">
+  
+  <!-- SEO & Open Graph -->
+  <meta property="og:title" content="영진전문대학교 - 통합회원가입">
+  <meta property="og:description" content="영진전문대학교 공식 통합 회원가입 페이지입니다. 안전한 보안 환경에서 통합 회원 계정을 생성하세요.">
+  <meta property="og:type" content="website">
+  
+  <!-- Web Fonts (Noto Sans KR, Montserrat) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for UI Enhancements -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- External CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Decorative Spheres for Modern Glassmorphism Accent -->
+  <div class="bg-bubble bg-bubble-1"></div>
+  <div class="bg-bubble bg-bubble-2"></div>
+
+  <div class="app-container">
+    <!-- Header Area -->
+    <header class="app-header">
+      <div class="logo-area">
+        <!-- SVG Logotype representing YJU -->
+        <svg class="yju-logo" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#006837" />
+              <stop offset="100%" stop-color="#009245" />
+            </linearGradient>
+            <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#F7931E" />
+              <stop offset="100%" stop-color="#FF5F00" />
+            </linearGradient>
+          </defs>
+          <!-- Emblem Symbol -->
+          <g transform="translate(10, 10)">
+            <path d="M 0 0 L 25 0 L 40 30 L 25 60 L 0 60 L 15 30 Z" fill="url(#gradGreen)" />
+            <circle cx="35" cy="30" r="18" fill="url(#gradOrange)" opacity="0.9" />
+            <path d="M 28 20 L 45 20 L 35 45 Z" fill="#FFFFFF" />
+          </g>
+          <!-- Typographic Text -->
+          <text x="75" y="38" font-family="'Montserrat', sans-serif" font-weight="900" font-size="28" fill="#006837" letter-spacing="1">YJU</text>
+          <text x="75" y="58" font-family="'Noto Sans KR', sans-serif" font-weight="700" font-size="14" fill="#666666" letter-spacing="0.5">영진전문대학교</text>
+        </svg>
+      </div>
+      <p class="header-subtitle">INTEGRATED MEMBERSHIP</p>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <section class="signup-card">
+        <div class="card-header">
+          <h1 class="card-title">통합 회원가입</h1>
+          <p class="card-desc">영진전문대학교의 다양한 대학 서비스를 이용하기 위해 회원 정보를 입력해 주세요.</p>
+        </div>
+
+        <form id="signupForm" class="signup-form" novalidate>
+          
+          <!-- 1. 아이디 입력 필드 -->
+          <div class="form-group" id="group-username">
+            <label for="username" class="form-label">아이디</label>
+            <div class="input-wrapper">
+              <i class="input-icon fa-regular fa-user"></i>
+              <input type="text" id="username" name="username" class="form-input" placeholder="영문 소문자, 숫자 조합 4~20자" required autocomplete="username">
+              <span class="status-indicator"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+            <div class="validation-message" id="msg-username">아이디를 입력해 주세요.</div>
+          </div>
+
+          <!-- 2. 비밀번호 입력 필드 -->
+          <div class="form-group" id="group-password">
+            <label for="password" class="form-label">비밀번호</label>
+            <div class="input-wrapper">
+              <i class="input-icon fa-solid fa-lock"></i>
+              <input type="password" id="password" name="password" class="form-input" placeholder="영문, 숫자, 특수문자 조합 8~16자" required autocomplete="new-password">
+              <button type="button" class="btn-toggle-password" tabindex="-1" aria-label="비밀번호 보기/숨기기">
+                <i class="fa-regular fa-eye-slash"></i>
+              </button>
+              <span class="status-indicator"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+            <!-- Password Strength Bar -->
+            <div class="password-strength-container">
+              <div class="strength-bar-bg">
+                <div class="strength-bar-gauge" id="strengthBar"></div>
+              </div>
+              <span class="strength-text" id="strengthText">보안성 검사 대기</span>
+            </div>
+            <div class="validation-message" id="msg-password">비밀번호를 입력해 주세요.</div>
+          </div>
+
+          <!-- 3. 비밀번호 확인 입력 필드 -->
+          <div class="form-group" id="group-confirm_password">
+            <label for="confirm_password" class="form-label">비밀번호 확인</label>
+            <div class="input-wrapper">
+              <i class="input-icon fa-solid fa-lock-open"></i>
+              <input type="password" id="confirm_password" name="confirm_password" class="form-input" placeholder="비밀번호를 다시 한번 입력해 주세요" required autocomplete="new-password">
+              <span class="status-indicator"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+            <div class="validation-message" id="msg-confirm_password">비밀번호가 일치하지 않습니다.</div>
+          </div>
+
+          <!-- 4. 이메일 입력 필드 -->
+          <div class="form-group" id="group-email">
+            <label for="email" class="form-label">이메일 주소</label>
+            <div class="input-wrapper">
+              <i class="input-icon fa-regular fa-envelope"></i>
+              <input type="email" id="email" name="email" class="form-input" placeholder="example@yju.ac.kr" required autocomplete="email">
+              <span class="status-indicator"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+            <div class="validation-message" id="msg-email">올바른 이메일 형식이 아닙니다.</div>
+          </div>
+
+          <!-- 5. 전화번호 입력 필드 -->
+          <div class="form-group" id="group-phone">
+            <label for="phone" class="form-label">휴대전화번호</label>
+            <div class="input-wrapper">
+              <i class="input-icon fa-solid fa-mobile-screen-button"></i>
+              <input type="tel" id="phone" name="phone" class="form-input" placeholder="010-0000-0000 ('-' 자동 입력)" required autocomplete="tel">
+              <span class="status-indicator"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+            <div class="validation-message" id="msg-phone">올바른 전화번호 형식이 아닙니다.</div>
+          </div>
+
+          <!-- 약관 동의 체크박스 -->
+          <div class="form-terms">
+            <label class="checkbox-container">
+              <input type="checkbox" id="termsAgree" required>
+              <span class="custom-checkbox"></span>
+              <span class="checkbox-label">
+                [필수] <a href="#" class="terms-link" onclick="event.preventDefault(); alert('이용약관 및 개인정보 수집 이용에 동의하셨습니다.');">이용약관</a> 및 
+                <a href="#" class="terms-link" onclick="event.preventDefault(); alert('개인정보처리방침에 동의하셨습니다.');">개인정보 수집 및 이용</a>에 동의합니다.
+              </span>
+            </label>
+            <div class="validation-message" id="msg-terms">필수 약관에 동의하셔야 회원가입이 가능합니다.</div>
+          </div>
+
+          <!-- 회원가입 제출 버튼 -->
+          <button type="submit" id="btnSubmit" class="btn-submit">
+            <span>회원 가입 완료</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+
+        </form>
+      </section>
+    </main>
+
+    <!-- Footer Area -->
+    <footer class="app-footer">
+      <p class="copyright">&copy; 2026 YEUNGJIN UNIVERSITY. ALL RIGHTS RESERVED.</p>
+      <div class="footer-links">
+        <a href="https://www.yju.ac.kr" target="_blank" rel="noopener noreferrer">대학 공식홈페이지</a>
+        <span class="divider">|</span>
+        <a href="#">개인정보처리방침</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- 회원가입 성공 팝업 모달 (DB 시뮬레이션) -->
+  <div class="modal-overlay" id="successModal" aria-hidden="true" role="dialog">
+    <div class="success-modal">
+      <div class="modal-decoration">
+        <div class="celebration-ring"></div>
+        <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+      </div>
+      <h2 class="modal-title">가입을 환영합니다!</h2>
+      <p class="modal-lead">영진전문대학교 통합 계정 생성이 정상적으로 모의(Mock) 실행되었습니다. DB 설계 규격에 맞춰 저장된 정보는 다음과 같습니다.</p>
+      
+      <!-- DB 저장 결과 데이터 테이블 -->
+      <div class="db-result-box">
+        <div class="db-badge">DATABASE RECORD SIMULATION</div>
+        <table class="db-table">
+          <tbody>
+            <tr>
+              <th><i class="fa-solid fa-key"></i> Key (No.)</th>
+              <td id="result-id" class="highlight-id">1</td>
+            </tr>
+            <tr>
+              <th><i class="fa-regular fa-user"></i> 아이디</th>
+              <td id="result-username">yju_student</td>
+            </tr>
+            <tr>
+              <th><i class="fa-solid fa-lock"></i> 비밀번호 해시</th>
+              <td class="pwd-hash-cell">
+                <span class="hash-text" id="result-password">SHA-256 Hash Simulated</span>
+                <span class="hash-tag">ENCRYPTED</span>
+              </td>
+            </tr>
+            <tr>
+              <th><i class="fa-regular fa-envelope"></i> 이메일</th>
+              <td id="result-email">student@yju.ac.kr</td>
+            </tr>
+            <tr>
+              <th><i class="fa-solid fa-mobile-screen-button"></i> 전화번호</th>
+              <td id="result-phone">010-1234-5678</td>
+            </tr>
+            <tr>
+              <th><i class="fa-regular fa-clock"></i> 가입일시</th>
+              <td id="result-date">2026-07-01 00:00:00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button type="button" class="btn-close-modal" id="btnCloseModal">확인 및 메인으로</button>
+    </div>
+  </div>
+
+  <!-- External JS Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
