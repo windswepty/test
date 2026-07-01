@@ -367,6 +367,18 @@ document.addEventListener('DOMContentLoaded', () => {
       modalData.phone.innerText = phoneVal;
       modalData.date.innerText = formattedDate;
 
+      // Save user to localStorage for simulated DB
+      const registeredUser = {
+        username: usernameVal,
+        password: pwdVal,
+        email: emailVal,
+        phone: phoneVal
+      };
+      let users = JSON.parse(localStorage.getItem('yju_users') || '[]');
+      users = users.filter(u => u.username !== usernameVal);
+      users.push(registeredUser);
+      localStorage.setItem('yju_users', JSON.stringify(users));
+
       // Show Modal
       successModal.classList.add('active');
       successModal.setAttribute('aria-hidden', 'false');
@@ -380,23 +392,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Close modal, save mock session data, and redirect to portal dashboard
+  // Close modal and redirect to portal login page
   btnCloseModal.addEventListener('click', () => {
     successModal.classList.remove('active');
     successModal.setAttribute('aria-hidden', 'true');
-    
-    // Save to sessionStorage for mock login state on the next page
-    const sessionUser = {
-      username: fields.username.input.value.trim(),
-      email: fields.email.input.value.trim(),
-      phone: fields.phone.input.value.trim(),
-      loginTime: modalData.date.innerText
-    };
-    
-    sessionStorage.setItem('yju_logged_in_user', JSON.stringify(sessionUser));
-    
-    // Redirect to next page
-    window.location.href = 'main.html';
+    // Redirect to login page
+    window.location.href = 'login.html';
   });
 
 

@@ -32,28 +32,13 @@
     <!-- Header Area -->
     <header class="app-header">
       <div class="logo-area">
-        <!-- SVG Logotype representing YJU -->
-        <svg class="yju-logo" viewBox="0 0 320 80" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="gradGreen" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#006837" />
-              <stop offset="100%" stop-color="#009245" />
-            </linearGradient>
-            <linearGradient id="gradOrange" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#F7931E" />
-              <stop offset="100%" stop-color="#FF5F00" />
-            </linearGradient>
-          </defs>
-          <!-- Emblem Symbol -->
-          <g transform="translate(10, 10)">
-            <path d="M 0 0 L 25 0 L 40 30 L 25 60 L 0 60 L 15 30 Z" fill="url(#gradGreen)" />
-            <circle cx="35" cy="30" r="18" fill="url(#gradOrange)" opacity="0.9" />
-            <path d="M 28 20 L 45 20 L 35 45 Z" fill="#FFFFFF" />
-          </g>
-          <!-- Typographic Text -->
-          <text x="75" y="38" font-family="'Montserrat', sans-serif" font-weight="900" font-size="28" fill="#006837" letter-spacing="1">YJU</text>
-          <text x="75" y="58" font-family="'Noto Sans KR', sans-serif" font-weight="700" font-size="14" fill="#666666" letter-spacing="0.5">영진전문대학교</text>
-        </svg>
+        <div class="yju-logo-container">
+          <img src="yju_logo.png" class="yju-logo-img" alt="영진전문대학교 로고">
+          <div class="logo-text-group">
+            <span class="logo-text-en">YJU</span>
+            <span class="logo-text-ko">영진전문대학교</span>
+          </div>
+        </div>
       </div>
       <p class="header-subtitle">INTEGRATED MEMBERSHIP</p>
     </header>
@@ -213,7 +198,7 @@
         </table>
       </div>
 
-      <button type="button" class="btn-close-modal" id="btnCloseModal">확인 및 메인으로</button>
+      <button type="button" class="btn-close-modal" id="btnCloseModal">확인 및 로그인으로</button>
     </div>
   </div>
 
