@@ -123,7 +123,7 @@
       if (!userDataJson) {
         // If not logged in, redirect to login page immediately
         alert('로그인 세션이 없습니다. 로그인 페이지로 이동합니다.');
-        window.location.href = 'login.html';
+        window.location.href = 'login.html?v=2';
         return;
       }
       
@@ -139,14 +139,14 @@
       } catch (e) {
         console.error('Failed to parse user session data', e);
         sessionStorage.removeItem('yju_logged_in_user');
-        window.location.href = 'login.html';
+        window.location.href = 'login.html?v=2';
       }
 
       // Logout handler
       document.getElementById('btnLogout').addEventListener('click', () => {
         if (confirm('로그아웃 하시겠습니까?')) {
           sessionStorage.removeItem('yju_logged_in_user');
-          window.location.href = 'login.html';
+          window.location.href = 'login.html?v=2';
         }
       });
     });
